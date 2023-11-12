@@ -246,4 +246,3 @@ btn_dot.grid(row=5,column=5)
 btn_dot.config(font=("Arial",14,"bold"))
 
 root.mainloop()
-
