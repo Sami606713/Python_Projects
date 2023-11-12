@@ -19,12 +19,13 @@ def get_op(oper):
     f_nbr=float(result_label["text"])
     op=oper
     result_label.config(text="")
-    # print(f_nbr,op)
+    print(f_nbr,op)
 
 def get_result():
     global f_nbr,op,s_nbr
     try:
         s_nbr=float(result_label["text"])
+        print(f_nbr,op,s_nbr)
 
         if op=="+":
             result_label.config(text=str(f_nbr+s_nbr))
@@ -245,3 +246,4 @@ btn_dot.grid(row=5,column=5)
 btn_dot.config(font=("Arial",14,"bold"))
 
 root.mainloop()
+
