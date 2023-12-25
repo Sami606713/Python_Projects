@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{fetch_product.name}}Product View {% endblock %}
+
+<style>
+.card-img-left {
+  object-fit: cover;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+</style>
+{% block body %}
+<div class="card mb-4">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="/{{fetch_product.image}}" class="card-img-left img-fluid" alt="Card image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h1 class="card-title" >{{fetch_product.name}}</h1>
+          <p class="card-text">{{fetch_product.description}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione voluptatum neque ex? Inventore exercitationem aliquid aliquam quos enim quia repellendus temporibus pariatur dignissimos, molestiae, ratione, deserunt culpa in sed ipsa Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatibus, tempora accusamus velit unde non quibusdam nobis odit porro ab tempore distinctio recusandae optio a eum voluptas dignissimos cumque molestias.</p>
+          <h3  style="color:orangered;">Rs: {{fetch_product.price}}</h3>
+          <br>
+          <form>
+            <button class="btn btn-outline-primary">Buy Now</button>
+            <button class="btn btn-outline-primary">Add to Cart</button>
+      </form>
+        </div>
+    </div>
+
+    </div>
+  </div>
+  
+{% endblock %}
+
+
+

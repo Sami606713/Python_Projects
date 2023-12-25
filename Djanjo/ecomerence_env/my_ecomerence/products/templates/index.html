@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}EcoSelect{% endblock %}
+
+{% block body%} 
+{% load static%}
+<!-- Slider -->
+<hr>
+
+<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src='{% static "products/images/iphone.jpg" %}' class="d-block w-100" alt="..." style="max-height: 400px;">
+       
+
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    
+    <div class="carousel-item">
+      <img src='{% static "products/images/iphone.jpg" %}' class="d-block w-100" alt="..." style="max-height: 400px;">
+      <!-- <img src="https://picsum.photos/400/400" class="d-block w-100" alt="..."> -->
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src='{% static "products/images/iphone.jpg" %}' class="d-block w-100" alt="..." style="max-height: 400px;">
+      <!-- <img src="https://picsum.photos/400/400" class="d-block w-100" alt="..."> -->
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<hr>
+<!-- End Slider -->
+
+<!-- card -->
+  <div class="product-cards">
+    <h1></h1>
+    <ul class="product-list">
+      {% for item in product%}
+      <li class="product-card">
+        <div class="product-image">
+          <img src="{{item.image}}" alt="Product image">
+            <i class="fas fa-eye"></i>
+          </a>
+        </div>
+        
+        <div class="product-info">
+          <a href="/product/product_view/{{item.id}}" class="product-name"><h5 style="color: orange;">{{item.name}}</h5></a>
+        
+          <p class="product-price" style="color: rgb(255, 0, 0);">{{item.price}}</p>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary cart" id="{{item.id}}">Add to cart</button>
+        </div>
+      </li>
+      {% if forloop.counter|divisibleby:5 and forloop.counter > 0 %}
+    </ul> <ul class="product-list">
+      {% endif %}
+   
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- end card -->
+{% endblock%}>
+
+{% block js %}  
+<script>
+  console.log("sami");  // Added semicolon for consistency
+  
+  var cart;  // Declaring the cart variable
+  
+  if (localStorage.getItem("cart") === null) {  // Corrected the condition
+    cart = {};
+  } else {
+    cart = JSON.parse(localStorage.getItem("cart"));
+  }
+  
+  // jQuery code to handle cart click
+  $('.cart').click(function() {
+    // console.log("clicked");
+    // Add your cart functionality here
+    // Random commit to issue a new commit 
+    // Adding more commits 
+    var idstr=this.id.toString();
+    // console.log(idstr)
+    
+    if (cart[idstr]!=undefined) {
+      cart[idstr]=cart[idstr]+1
+    } else {
+      cart[idstr]=1
+    }
+    // console.log(cart);
+    localStorage.setItem("cart",JSON.stringify(cart));
+  });
+</script>
+{% endblock %}
+
