@@ -88,24 +88,23 @@
     cart = {};
   } else {
     cart = JSON.parse(localStorage.getItem("cart"));
+    document.getElementById("cart").innerHTML=Object.keys(cart).length
   }
   
   // jQuery code to handle cart click
   $('.cart').click(function() {
-    // console.log("clicked");
-    // Add your cart functionality here
-    // Random commit to issue a new commit 
-    // Adding more commits 
+     //console.log("clicked");
     var idstr=this.id.toString();
-    // console.log(idstr)
+     //console.log(idstr)
     
     if (cart[idstr]!=undefined) {
       cart[idstr]=cart[idstr]+1
     } else {
       cart[idstr]=1
     }
-    // console.log(cart);
+     //console.log(cart);
     localStorage.setItem("cart",JSON.stringify(cart));
+    document.getElementById("cart").innerHTML=Object.keys(cart).length
   });
 </script>
 {% endblock %}
