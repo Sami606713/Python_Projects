@@ -11,7 +11,6 @@
     <div class="carousel-item active">
       <img src='{% static "products/images/iphone.jpg" %}' class="d-block w-100" alt="..." style="max-height: 400px;">
        
-
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Some representative placeholder content for the second slide.</p>
@@ -48,7 +47,7 @@
 <!-- End Slider -->
 
 <!-- card -->
-  <div class="product-cards">
+  <div class="product-cards" id="product-item" style="padding: 2rem;">
     <h1></h1>
     <ul class="product-list">
       {% for item in product%}
@@ -93,18 +92,23 @@
   
   // jQuery code to handle cart click
   $('.cart').click(function() {
-     //console.log("clicked");
+     console.log("clicked");
     var idstr=this.id.toString();
-     //console.log(idstr)
+     console.log(idstr)
     
     if (cart[idstr]!=undefined) {
       cart[idstr]=cart[idstr]+1
     } else {
       cart[idstr]=1
     }
-     //console.log(cart);
+     console.log(cart);
     localStorage.setItem("cart",JSON.stringify(cart));
-    document.getElementById("cart").innerHTML=Object.keys(cart).length
+    // document.getElementById("cart").innerHTML=Object.keys(cart).length
+    function sum(x,y) {
+      s=x+y
+      return s
+    }
+    document.getElementById("cart").innerHTML=Object.values(cart).reduce((acc, value) => acc + value, 0);
   });
 </script>
 {% endblock %}
