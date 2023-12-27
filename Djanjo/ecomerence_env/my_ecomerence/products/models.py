@@ -17,7 +17,7 @@ class Products(models.Model):
     date=models.DateTimeField(auto_now=True)
     image=models.ImageField(upload_to="media/images",default="")
     def __str__(self):
-        return f"{self.name} {self.category}"
+        return f"{self.name} {self.category} {self.image}"
 
 # End product 
 

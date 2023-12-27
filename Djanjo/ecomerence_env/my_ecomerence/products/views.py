@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from products.models import Products,Contact
-import math
+import math,os
 # Api imports
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -34,8 +34,9 @@ def index(request):
     # Nbr od slides we want to display
     n=len(product)
     nbr_of_slides=n//4 + math.ceil((n/4)-(n//4))
-    params={"product":product,"Nbr of slides":nbr_of_slides,"range":range(nbr_of_slides)}
+    # For displaying the image
 
+    params={"product":product,"Nbr of slides":nbr_of_slides,"range":range(nbr_of_slides)}
     return render(request,"index.html",params)
 
 
@@ -49,13 +50,6 @@ def contact(request):
 
         contact=Contact(name=name,email=email,phone=phone_nbr,msg=msg)
         contact.save()
-
-        # subject="this is a mail"
-        # message=msg
-        # from_email="sami606713@gmial.com"
-        # recipicent_list=["sami606715@gmail.com"]
-        # send_mail(subject,message,from_email,recipicent_list)
-        # print("send successflu")
     return render(request,"contact.html")
 
 
@@ -94,6 +88,4 @@ def log_in(request):
 def product_view(request,id):
     # fetch the item
     product=Products.objects.filter(pk=id)
-    print("product:",product)
-    # return HttpResponse("<h1>Product View</h1>")
     return render(request,"product_view.html",{"fetch_product":product[0]})
