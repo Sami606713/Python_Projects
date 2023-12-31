@@ -9,54 +9,47 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="{% static 'products/css/contact.css'%}" rel="stylesheet">
+    <link href="{% static 'products/css/contacts.css'%}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'products/css/new_signup.css' %}">
     <link rel="stylesheet" href="{% static 'products/css/new_card.css' %}">
     <title>{% block title %}  {% endblock %}</title>
 
 </head>
 <style>
-body{
+/* body{
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: none;
-}
+} */
 
 </style>
 <body>
  <!-- Navbar -->
-
- <nav class="navbar navbar-expand-lg navbar-white bg-white">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">EcoSelect</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/product/about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/product/contact">Contact</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/product/signup">Signup</a>
-      </li>
-    </ul>
-
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-        <button class="btn btn-outline-secondary mx-2" type="submit">Cart(<span id="cart">0</span>)</button>
-      </form>
-      
+ <body class="bg-white-500">
+  <header class="text-gray-400 bg-gray-900 body-font">
+    <div class="container mx-auto flex flex-wrap p-1 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">EcoSelect</span>
+      </a>
+      <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700   flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 hover:text-white" href="/">Home</a>
+        <a class="mr-5 hover:text-white" href="/product/about">About</a>
+        <a class="mr-5 hover:text-white" href="/product/contact">Contact</a>
+       <a class="mr-5 hover:text-white" href="/product/signup">Signup</a>
+      </nav>
+       <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Search</button>
+              <a href="product/shoping_cart">
+                  <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mx-2" type="submit">Cart(<span id="cart">0</span>)</button>
+              </a>
+          </form>
     </div>
-  </div>
-</nav>
+  </header>
+  
 <hr>
 <!-- End of Navber -->
 
@@ -75,47 +68,10 @@ body{
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
     <!-- Option 2: Separate Popper and Bootstrap JS -->
-    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {% block js %}  
-    <script>
-      console.log("sami");  // Added semicolon for consistency
-      
-      var cart;  // Declaring the cart variable
-      
-      if (localStorage.getItem("cart") === null) {  // Corrected the condition
-        cart = {};
-      } else {
-        cart = JSON.parse(localStorage.getItem("cart"));
-        document.getElementById("cart").innerHTML=Object.keys(cart).length
-      }
-      
-      // jQuery code to handle cart click
-      $('.cart').click(function() {
-        console.log("clicked");
-        var idstr=this.id.toString();
-        console.log(idstr)
-        
-        if (cart[idstr]!=undefined) {
-          cart[idstr]=cart[idstr]+1
-        } else {
-          cart[idstr]=1
-        }
-        console.log(cart);
-        localStorage.setItem("cart",JSON.stringify(cart));
-        // document.getElementById("cart").innerHTML=Object.keys(cart).length
-        function sum(x,y) {
-          s=x+y
-          return s
-        }
-        document.getElementById("cart").innerHTML=Object.keys(cart).length
-        //document.getElementById("cart").innerHTML=Object.values(cart).reduce((acc, value) => acc + value, 0);
-      });
-    </script>
-{% endblock %}
+    {% block js %}  {% endblock %}
   </body>
 </html>

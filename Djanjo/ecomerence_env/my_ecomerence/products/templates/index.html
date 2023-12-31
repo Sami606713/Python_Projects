@@ -51,15 +51,15 @@
       {% for item in product%}
       <li class="product-card">
         <div class="product-image">
-          <img src="{{item.image}}" alt="Product image">
+          <img id="image{{item.id}}" src="{{item.image}}" alt="Product image">
             <i class="fas fa-eye"></i>
-          </a>
         </div>
         
         <div class="product-info">
-          <a href="/product/product_view/{{item.id}}" class="product-name"><h5 style="color: orange;">{{item.name}}</h5></a>
+          <a href="/product/product_view/{{item.id}}" class="product-name"><h5 id="prname{{item.id}}"
+             style="color: orange;">{{item.name}}</h5></a>
         
-          <p class="product-price" style="color: rgb(255, 0, 0);">{{item.price}}</p>
+          <p class="product-price" id="price{{item.id}}" style="color: rgb(255, 0, 0);">{{item.price}}</p>
         </div>
         <div class="d-grid gap-2">
           <button class="btn btn-primary cart" id="{{item.id}}">Add to cart</button>
@@ -75,4 +75,37 @@
   <!-- end card -->
 {% endblock%}>
 
+{% block js %}  
+<script>
+    var cart;  // Declaring the cart variable
+  
+  if (localStorage.getItem("cart") === null) {  // Corrected the condition
+    cart = {};
+  } else {
+    cart = JSON.parse(localStorage.getItem("cart"));
+    document.getElementById("cart").innerHTML=Object.keys(cart).length
+  }
+  
+  // jQuery code to handle cart click
+  $('.cart').click(function() {
+     console.log("clicked");
+    var idstr=this.id.toString();
+    if (cart[idstr]!=undefined) {
+      quantity=cart[idstr][1]+1
+
+    } else {
+        quantity=1
+        name=document.getElementById("prname"+idstr).innerHTML
+        price=document.getElementById("price"+idstr).innerHTML
+        image=document.getElementById("image"+idstr)
+        cart[idstr]=[name,quantity,price,image.src]
+    }
+    localStorage.setItem("cart",JSON.stringify(cart));
+    // document.getElementById("cart").innerHTML=Object.keys(cart).length
+
+    document.getElementById("cart").innerHTML=Object.keys(cart).length
+    // document.getElementById("cart").innerHTML=Object.values(cart).reduce((acc, value) => acc + value, 0);
+  });
+</script>
+{% endblock %}
 

@@ -84,8 +84,13 @@ def log_in(request):
             return redirect("/product/log_in")
     return render(request,"registration/log_in.html")
 
-
+# Product view
 def product_view(request,id):
     # fetch the item
     product=Products.objects.filter(pk=id)
     return render(request,"product_view.html",{"fetch_product":product[0]})
+
+# Cart 
+def cart(request):
+    # return HttpResponse("<h1>Cart </h1>")
+    return render(request, "shoping_cart.html")

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title%}Cart{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container mx-auto my-8">
+    <!-- Cart Table -->
+    <div class="grid grid-cols-4 bg-white-500 rounded-md ">
+        <!-- Column Headings -->
+        <div class="col-span-4 bg-white-500 p-4 ">
+            <div class="grid grid-cols-4 shadow-md p-4 mb-2 font-bold ">
+                <div>Product</div>
+                <div>Price</div>
+                <div>Quantity</div>
+                <div>Subtotal</div>
+            </div>
+        </div>
+        <!-- Cart Items -->
+        <div class="col-span-4 p-4" id="items">
+            <!-- javascript handle -->
+        </div>
+        <!-- Back to Shop Button -->
+        <div class="col-span-2 p-4">
+            <a href="/">
+            <button class="bg-white-500 text-black py-2 hover:text-white px-4 rounded hover:bg-blue-600 border border-black-500 p-4">Back to Shop</button>
+            </a>
+        </div>
+        <!-- Update Cart Button -->
+        <div class="col-span-2 p-4 text-right">
+            <button class="bg-white-500 text-black py-2 hover:text-white px-4 rounded hover:bg-green-500 border border-black-500 p-4">Update Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Total -->
+    <div class="flex justify-end my-8">
+        <div class="w-96 bg-white rounded-md shadow-md p-4 border border-black-500 p-4">
+            <h2 class="text-lg font-semibold mb-4">Cart Total</h2>
+            <div class="flex justify-between mb-2">
+                <span>Subtotal:</span>
+                <span id="sub_total">$244</span>
+            </div>
+            <hr>
+
+            <div class="flex justify-between mb-2">
+                <span>Total:</span>
+                <span id="total">$300</span>
+            </div>
+            <hr>
+            <!-- Process to Checkout Button -->
+            <div class="text-center mt-4">
+                <button class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+cart=JSON.parse(localStorage.getItem("cart"))
+let total=0
+for(i in cart){
+    console.log(cart[i][0]);
+    name=cart[i][0]
+    quantity=cart[i][1]
+    price=cart[i][2]
+    img=cart[i][3]
+
+    total+=price*quantity
+    
+    document.getElementById("items").innerHTML+=`
+            <div class="grid grid-cols-4 mb-3 mt-0 shadow-md p-2 font-semibold h-20" id="product">
+                <div class="flex items-center">
+                    <!-- Add your product image source here -->
+                    <img src="${img}" alt="Product Image" class="w-8 h-8 rounded mr-2">
+                    <div>
+                        ${name}
+                    </div>
+                </div>
+                    <div>
+                        ${price}  
+                    </div>
+                    <div>
+                        <input type="number" class="w-16 border rounded p-1" value="1">
+                    </div>
+                    <div>${quantity*price}</div>
+                </div>
+       
+    `
+}
+document.getElementById("total").innerHTML=total
+document.getElementById("sub_total").innerHTML=total
+// console.log("price",total);
+
+</script>
+{% endblock %}

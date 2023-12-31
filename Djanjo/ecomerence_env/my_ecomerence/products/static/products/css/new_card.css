@@ -1,21 +1,5 @@
 /*Navbar*/
-.navbar-brand {
-    color: black;
-    font-weight: bold;
-  }
-  
-  .navbar-nav .nav-link {
-    color: black;
-    padding: 1px;
-    margin: 2px;
-    font-weight: bold;
-  }
-  
-  .navbar-nav .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle highlight for active tab */
-  }
-  
-  .form-control {
+    .form-control {
     border: 1px solid white;
     background-color: whitesmoke;
     color: white;
