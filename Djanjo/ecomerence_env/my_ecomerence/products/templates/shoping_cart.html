@@ -26,7 +26,7 @@
         </div>
         <!-- Update Cart Button -->
         <div class="col-span-2 p-4 text-right">
-            <button class="bg-white-500 text-black py-2 hover:text-white px-4 rounded hover:bg-green-500 border border-black-500 p-4">Update Cart</button>
+            <button class="bg-white-500 text-black py-2 hover:text-white px-4 rounded hover:bg-green-500 border border-black-500 p-4 update">Update Cart</button>
         </div>
     </div>
 
@@ -59,15 +59,26 @@
 <script>
 cart=JSON.parse(localStorage.getItem("cart"))
 let total=0
-for(i in cart){
-    console.log(cart[i][0]);
-    name=cart[i][0]
-    quantity=cart[i][1]
-    price=cart[i][2]
-    img=cart[i][3]
+if (cart==null) {
+    document.getElementById("items").innerHTML+=`
+            <div class="grid grid-cols-4 mb-3 mt-0 shadow-md p-2 font-semibold h-20" id="product">
+                <div class="flex items-center">
+                    <!-- Add your product image source here -->
+                    <h1 text-lg font-bold mb-4 text-black py-2>No item in Cart</h1>
+                </div>
+            </div>`
+}else{
+
+for(const item in cart){
+    // console.log(cart[i][0]);
+    const name=cart[item][0]
+    const quantity=cart[item][1]
+    const price=cart[item][2]
+    const img=cart[item][3]
+
 
     total+=price*quantity
-    
+
     document.getElementById("items").innerHTML+=`
             <div class="grid grid-cols-4 mb-3 mt-0 shadow-md p-2 font-semibold h-20" id="product">
                 <div class="flex items-center">
@@ -81,16 +92,29 @@ for(i in cart){
                         ${price}  
                     </div>
                     <div>
-                        <input type="number" class="w-16 border rounded p-1" value="1">
+                        <input type="number" id="${name}" class="w-16 border rounded p-1" value="1">
                     </div>
                     <div>${quantity*price}</div>
                 </div>
        
-    `
+  ` 
+    }
 }
 document.getElementById("total").innerHTML=total
 document.getElementById("sub_total").innerHTML=total
-// console.log("price",total);
+
+// console.log(document.getElementById("cart"));
+document.getElementById("cart").innerHTML=Object.keys(cart).length
+
+// $(".update").click(function(){
+// console.log("update clicked");
+// // console.log("qu: ",document.getElementById("product").innerHTML);
+// for(let item in cart){
+//     // console.log("qu: ",document.getElementById(cart[i][0]).value);
+//     cart[item][1]=document.getElementById(cart[item][0]).value
+// }
+// localStorage.setItem("cart", JSON.stringify(cart));
+// }); 
 
 </script>
 {% endblock %}
