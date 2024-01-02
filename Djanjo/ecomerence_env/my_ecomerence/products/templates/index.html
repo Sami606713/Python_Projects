@@ -51,9 +51,16 @@
           <h2 class="text-black title-font text-lg font-medium" id="prname{{item.id}}" style="color: rgb(19, 19, 18);">{{item.name}}</h2>
           <h3 class="mt-1" id="price{{item.id}}" style="color: rgb(255, 102, 0);">{{item.price}}</h3>
         </div>
+        {% if user.is_authenticated %}
+          <div class="mt-4">
+            <button class="bg-yellow text-black py-2 hover:text-white px-4 rounded hover:bg-blue-600 border border-black-500 p-4 cart" id="{{item.id}}">Add to cart</button>
+          </div>
+        {% else %}
         <div class="mt-4">
-          <button class="bg-yellow text-black py-2 hover:text-white px-4 rounded hover:bg-blue-600 border border-black-500 p-4 cart" id="{{item.id}}">Add to cart</button>
+          <a href="{% url 'signup' %}" class="text-blue-600 hover:underline">Sign up to add to cart</a>
         </div>
+
+        {% endif %}
       </div>
       {% if forloop.counter|divisibleby:4 and forloop.counter > 0 %}
       </div>
@@ -82,10 +89,7 @@
   $('.cart').click(function() {
     //  console.log("clicked");
     var idstr=this.id.toString();
-    if (cart[idstr]!=undefined) {
-      quantity=cart[idstr][1]+1
-
-    } else {
+    if (cart[idstr]==undefined) { 
         quantity=1
         name=document.getElementById("prname"+idstr).innerHTML
         price=document.getElementById("price"+idstr).innerHTML

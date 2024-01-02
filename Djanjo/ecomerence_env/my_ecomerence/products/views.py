@@ -11,6 +11,8 @@ from products.serializers import ProductSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 # Email sending
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 # Api end points class
@@ -50,6 +52,13 @@ def contact(request):
 
         contact=Contact(name=name,email=email,phone=phone_nbr,msg=msg)
         contact.save()
+
+        subject = 'New Contact Form Submission'
+        message = f'Name: {name}\nEmail: {email}\nPhone: {phone_nbr}\nMessage: {msg}'
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = ['sami606713@gmail.com','sami606715@gmail.com']  # Add your email or a list of emails here
+
+        send_mail(subject, message, from_email, recipient_list,fail_silently=False,)
     return render(request,"contact.html")
 
 
@@ -93,4 +102,5 @@ def product_view(request,id):
 # Cart 
 def cart(request):
     # return HttpResponse("<h1>Cart </h1>")
+
     return render(request, "shoping_cart.html")

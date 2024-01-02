@@ -26,7 +26,7 @@
         </div>
         <!-- Update Cart Button -->
         <div class="col-span-2 p-4 text-right">
-            <button class="bg-white-500 text-black py-2 hover:text-white px-4 rounded hover:bg-green-500 border border-black-500 p-4 update">Update Cart</button>
+            <button id="update_btn" class="bg-white-500 text-black py-2 hover:text-white px-4 rounded hover:bg-green-500 border border-black-500 p-4 update">Update Cart</button>
         </div>
     </div>
 
@@ -76,6 +76,7 @@ for(const item in cart){
     const price=cart[item][2]
     const img=cart[item][3]
 
+    // console.log(item);
 
     total+=price*quantity
 
@@ -92,7 +93,7 @@ for(const item in cart){
                         ${price}  
                     </div>
                     <div>
-                        <input type="number" id="${name}" class="w-16 border rounded p-1" value="1">
+                        <input type="number" id="pr${item}" class="w-16 border rounded p-1" value="${quantity}">
                     </div>
                     <div>${quantity*price}</div>
                 </div>
@@ -106,15 +107,33 @@ document.getElementById("sub_total").innerHTML=total
 // console.log(document.getElementById("cart"));
 document.getElementById("cart").innerHTML=Object.keys(cart).length
 
-// $(".update").click(function(){
-// console.log("update clicked");
-// // console.log("qu: ",document.getElementById("product").innerHTML);
-// for(let item in cart){
-//     // console.log("qu: ",document.getElementById(cart[i][0]).value);
-//     cart[item][1]=document.getElementById(cart[item][0]).value
-// }
-// localStorage.setItem("cart", JSON.stringify(cart));
-// }); 
+$(".update").click(function(){
+console.log("update clicked");
+for(let item in cart){
+    console.log(document.getElementById("pr"+item).value);
+    let new_quantity=document.getElementById("pr"+item).value
+    // console.log(new_quantity);
 
+    console.log(cart[item][1]);
+    try{
+        cart[item][1]=new_quantity
+
+const update_cart=JSON.stringify(cart)
+
+localStorage.setItem("cart",update_cart)
+console.log("uodate successfull");
+    }
+   catch{
+    console.log("error");
+   }
+
+}
+}); 
 </script>
+<script>
+    document.getElementById('update_btn').addEventListener('click', function() {
+      location.reload();
+    });
+</script>
+  
 {% endblock %}
