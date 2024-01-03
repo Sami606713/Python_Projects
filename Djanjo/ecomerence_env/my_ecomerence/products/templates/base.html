@@ -149,7 +149,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.min.js"></script>
-    
+    <script>
+      var cart;  // Declaring the cart variable
+  
+      if (localStorage.getItem("cart") === null) {  // Corrected the condition
+        cart = {};
+      } else {
+        cart = JSON.parse(localStorage.getItem("cart"));
+        document.getElementById("cart").innerHTML=Object.keys(cart).length
+      }
+      
+    </script>
     {% block js %}  {% endblock %}
   </body>
 </html>

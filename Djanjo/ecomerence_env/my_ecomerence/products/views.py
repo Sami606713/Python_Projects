@@ -101,6 +101,18 @@ def product_view(request,id):
 
 # Cart 
 def cart(request):
-    # return HttpResponse("<h1>Cart </h1>")
-
     return render(request, "shoping_cart.html")
+
+# order 
+def order(request):
+    if(request.method=="post" and user.is_authenticated):
+        name=request.POST.get("name")
+        phone_nbr=request.POST.get("nbr")
+        address=request.POST.get("addr")
+        email=request.POST.get("email")
+        province=request.POST.get("province")
+        city=request.POST.get("city")
+        area=request.POST.get("area")
+        print(name,phone_nbr,address,email,province,city,area)
+    return render(request,"order.html")
+# end order

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "products",
     "djongo",
     'rest_framework',
+    'storages',
     # authentication
    
 ]

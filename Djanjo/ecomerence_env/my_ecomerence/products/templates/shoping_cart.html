@@ -97,7 +97,6 @@ for(const item in cart){
                     </div>
                     <div>${quantity*price}</div>
                 </div>
-       
   ` 
     }
 }
@@ -112,21 +111,21 @@ console.log("update clicked");
 for(let item in cart){
     console.log(document.getElementById("pr"+item).value);
     let new_quantity=document.getElementById("pr"+item).value
-    // console.log(new_quantity);
 
+    // new_quantity=Math.max(parseInt(document.getElementById("pr"+item).value),parseInt(cart[item][1]))
+    // console.log(new_quantity,typeof(new_quantity));
     console.log(cart[item][1]);
     try{
         cart[item][1]=new_quantity
+        console.log(cart[item][1]);
+        const update_cart=JSON.stringify(cart)
 
-const update_cart=JSON.stringify(cart)
-
-localStorage.setItem("cart",update_cart)
-console.log("uodate successfull");
+        localStorage.setItem("cart",update_cart)
+        console.log("update successfull");
     }
    catch{
     console.log("error");
    }
-
 }
 }); 
 </script>
@@ -135,5 +134,4 @@ console.log("uodate successfull");
       location.reload();
     });
 </script>
-  
 {% endblock %}
