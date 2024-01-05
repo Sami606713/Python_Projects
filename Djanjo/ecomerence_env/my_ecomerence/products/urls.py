@@ -9,6 +9,7 @@ urlpatterns = [
     path("",include(router.urls)),
     path("index",views.index,name="index"),
     path("log_in",views.log_in,name="log_in"),
+    path("log_out",views.log_out,name="log_out"),
     path("signup",views.signup,name="signup"),
     path("contact",views.contact,name="contact"),
     path("about",views.about,name="about"),

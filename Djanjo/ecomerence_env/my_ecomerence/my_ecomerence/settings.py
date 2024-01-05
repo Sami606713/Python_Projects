@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     "products",
     "djongo",
     'rest_framework',
-    'storages',
-    # authentication
+    'storages'
    
 ]
 
@@ -59,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'my_ecomerence.urls'
@@ -150,27 +150,20 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
     ),
 }
-# Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'your_smtp_host'  # e.g., 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sami606713@gmail.com'
-EMAIL_HOST_PASSWORD = 'S@m!u11@h eng!neer'
-
-
-# End Email
-
-# S3 bucket
-# settings.py
-# AWS_ACCESS_KEY_ID = 'AKIAVMPWBP6JRF2VMDXQ'
+# # S3 bucket
+# # settings.py
+# AWS_ACCESS_KEY_ID = 'AKIAVMPWBP6JV5SZIOT3'
 # AWS_SECRET_ACCESS_KEY = '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'
 # AWS_STORAGE_BUCKET_NAME = 'imagegalery'
 # AWS_S3_SIGNATURE_VERSION = 's3v4'
 # AWS_S3_FILE_OVERWRITE = False
 # AWS_S3_REGION_NAME = 'eu-north-1'  # e.g., 'us-west-2'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+# STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
 
 
 
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]

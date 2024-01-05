@@ -47,7 +47,7 @@
             <hr>
             <!-- Process to Checkout Button -->
             <div class="text-center mt-4">
-                <button class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Proceed to Checkout</button>
+               <a href="/product/order"> <button class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Proceed to Checkout</button></a>
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@ for(const item in cart){
                     <div>
                         <input type="number" id="pr${item}" class="w-16 border rounded p-1" value="${quantity}">
                     </div>
-                    <div>${quantity*price}</div>
+                    <div id=total${item}>${quantity*price}</div>
                 </div>
   ` 
     }
@@ -111,21 +111,26 @@ console.log("update clicked");
 for(let item in cart){
     console.log(document.getElementById("pr"+item).value);
     let new_quantity=document.getElementById("pr"+item).value
-
-    // new_quantity=Math.max(parseInt(document.getElementById("pr"+item).value),parseInt(cart[item][1]))
-    // console.log(new_quantity,typeof(new_quantity));
     console.log(cart[item][1]);
-    try{
+    if (new_quantity<=0) {
+        new_quantity=1
+    }
+    else{
+        try{
         cart[item][1]=new_quantity
+        // cart[item][2]=new_price
         console.log(cart[item][1]);
         const update_cart=JSON.stringify(cart)
 
         localStorage.setItem("cart",update_cart)
-        console.log("update successfull");
+        // console.log("update successfull");
     }
    catch{
     console.log("error");
    }
+
+    }
+    
 }
 }); 
 </script>

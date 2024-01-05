@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import logout
 from django.http import HttpResponse
-from products.models import Products,Contact
+from products.models import Products,Contact,Address
 import math,os
 # Api imports
 from rest_framework import viewsets
@@ -55,7 +56,7 @@ def contact(request):
 
         subject = 'New Contact Form Submission'
         message = f'Name: {name}\nEmail: {email}\nPhone: {phone_nbr}\nMessage: {msg}'
-        from_email = settings.EMAIL_HOST_USER
+        from_email = "sami696713@gmail.com"
         recipient_list = ['sami606713@gmail.com','sami606715@gmail.com']  # Add your email or a list of emails here
 
         send_mail(subject, message, from_email, recipient_list,fail_silently=False,)
@@ -93,6 +94,9 @@ def log_in(request):
             return redirect("/product/log_in")
     return render(request,"registration/log_in.html")
 
+def log_out(request):
+    logout(request)
+    return redirect("/")
 # Product view
 def product_view(request,id):
     # fetch the item
@@ -105,7 +109,7 @@ def cart(request):
 
 # order 
 def order(request):
-    if(request.method=="post" and user.is_authenticated):
+    if(request.method=="POST"):
         name=request.POST.get("name")
         phone_nbr=request.POST.get("nbr")
         address=request.POST.get("addr")
@@ -114,5 +118,9 @@ def order(request):
         city=request.POST.get("city")
         area=request.POST.get("area")
         print(name,phone_nbr,address,email,province,city,area)
+        # print(name)
+
+        new_address=Address(name=name,province=province,area=area,city=city,email=email,mobile=phone_nbr,address=address)
+        new_address.save()
     return render(request,"order.html")
 # end order

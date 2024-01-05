@@ -24,7 +24,6 @@ class Products(models.Model):
 
 # Contact model
 class Contact(models.Model):
-    # id=models.AutoField(primary_key=True)
     _id=models.ObjectIdField(primary_key=True)
     name=models.CharField(max_length=100,default="")
     email=models.EmailField()
@@ -36,29 +35,31 @@ class Contact(models.Model):
 # End contact
 
 class Address(models.Model):
-    address_id=models.ObjectIdField(primary_key=True)
-    name=models.CharField(max_length=100)
-    address=models.CharField(max_length=250)
-    mobile=models.CharField(max_length=20,help_text="+12345678")
-    email=models.CharField(max_length=50,unique=True)
-    province=models.CharField(max_length=50,choices=(
-       ("Azad Kashmir","Azad Kashmir"),
-       ("Balochistan","Balochistan"),
-       ("Islamabad","Islamabad"),
-       ("KPK","KPK"),
-       ("Punjab","Punjab"),
-       ("Sindh","Sindh")
+    _id =models.ObjectIdField(primary_key=True)
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=250)
+    mobile = models.CharField(max_length=20, help_text="+12345678")
+    email = models.CharField(max_length=50, unique=True)
+    province = models.CharField(max_length=50, choices=(
+       ("Azad Kashmir", "Azad Kashmir"),
+       ("Balochistan", "Balochistan"),
+       ("Islamabad", "Islamabad"),
+       ("KPK", "KPK"),
+       ("Punjab", "Punjab"),
+       ("Sindh", "Sindh")
     ))
-    city=models.CharField(max_length=50,choices=(
-       ("haripur","haripur"),
-        ("Abbottbad","Abbottabad"),
-       ("Mansehera","Mansehra"),
-       ("Hattar","Hattar"),
-       ("Ghazi","Ghazi")
+    city = models.CharField(max_length=50, choices=(
+       ("haripur", "haripur"),
+       ("Abbottabad", "Abbottabad"),
+       ("Mansehera", "Mansehra"),
+       ("Hattar", "Hattar"),
+       ("Ghazi", "Ghazi")
     ))
-    area=models.CharField(max_length=50,choices=(
-       ("Pharhala","Pharhala"),
-       ("K.T.S","K.T.S"),
-       ("Amir khan plaza","Amir Khan Plaza")
+    area = models.CharField(max_length=50, choices=(
+       ("Pharhala", "Pharhala"),
+       ("K.T.S", "K.T.S"),
+       ("Amir khan plaza", "Amir Khan Plaza")
     ))
 
+    def __str__(self):
+        return f"{self.name} {self.city}"
