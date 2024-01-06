@@ -150,20 +150,17 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
     ),
 }
-# # S3 bucket
-# # settings.py
-# AWS_ACCESS_KEY_ID = 'AKIAVMPWBP6JV5SZIOT3'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'imagegalery'
-# AWS_S3_SIGNATURE_VERSION = 's3v4'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_S3_REGION_NAME = 'eu-north-1'  # e.g., 'us-west-2'
-# DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
-# STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'your_smtp_server'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sami606713@gmail.com'
+EMAIL_HOST_PASSWORD = 'hfwz fmgz qdha hbzt'
 
 
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
+# hfwz fmgz qdha hbzt

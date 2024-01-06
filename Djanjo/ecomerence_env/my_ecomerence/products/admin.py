@@ -1,5 +1,5 @@
 from django.contrib import admin
-from products.models import Products,Contact,Address
+from products.models import Products,Contact,Address,Order
 # Register your models here.
 # ADD a search field
 class ProductAdmin(admin.ModelAdmin):
@@ -13,3 +13,13 @@ admin.site.register(Contact,ContactAdmin)
 class AddressAdmin(admin.ModelAdmin):
     search_fields=(["name","city"])
 admin.site.register(Address)
+
+class OrderAdmin(admin.ModelAdmin):
+    search_fields=("_id")
+admin.site.register(Order)
+
+# Admin Setting
+admin.site.site_header="Eco_Select Admin Pannnel"
+admin.site.site_index="Welcome to EcoSelect"
+
+# End Admin Pannel

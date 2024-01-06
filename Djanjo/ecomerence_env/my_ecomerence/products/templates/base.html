@@ -35,7 +35,7 @@
         {% if user.is_authenticated %}
         <a class="mr-5 hover:text-white"id="signup" href="/product/log_out">logout</a>
         {% else %}
-       <a class="mr-5 hover:text-white"id="signup" href="/product/signup">Signup</a>
+       <a class="mr-5 hover:text-white"id="signup" href="/product/log_in">login</a>
        {% endif %}
       </nav>
         <form class="d-flex">
@@ -43,8 +43,8 @@
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Search</button>
           {% if user.is_authenticated %}
           <a href="/product/shoping_cart" button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mx-2" id="CartButton" type="submit">Cart(<span id="cart">0</span>)</button> </a>
-          
-          
+          {% else %}
+          <h1><h1></h1>
           {% endif %}
         </form>
       

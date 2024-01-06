@@ -7,8 +7,9 @@
         <!-- Left Div - Billing Address Form -->
         <div class="w-1/2 pr-8">
             <h2 class="text-2xl font-semibold mb-4">Billing Address</h2>
-            <form action="order" method="post">
+            <form action="/product/order" method="post">
                 {% csrf_token %}
+                <input type="hidden" type="text" id="itemjson" name="itemjson">
                 <!-- name -->
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700">Name:</label>
@@ -73,8 +74,8 @@
 
                 <!-- Submit button -->
                 <div class="text-center">
-                    <button type="submit"
-                        class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Submit</button>
+                    <button type="submit" id="address" class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600" style="display: none;">Submit</button> 
+                    
                 </div>
             </form>
         </div>
@@ -86,34 +87,12 @@
                 <!-- javascript handle -->
             </div>
 
-            <!-- Cart Total -->
-            <!-- <div id="total_pr">
-            <h2 class="text-lg font-semibold mb-4">Cart Total</h2>
-            <div class="flex justify-between mb-2">
-                <span>Subtotal:</span>
-                <span id="sub_total">$244</span>
+        <!-- Cart Total -->
+            <div class="card" style="margin-top: 24rem;" >
+                <div class="card-body" id="total_pr">
+                   
+                </div>
             </div>
-            <hr>
-
-            <div class="flex justify-between mb-2">
-                <span>Total:</span>
-                <span id="total">$300</span>
-            </div>
-            <hr>
-
-            Process to Checkout Button
-            <div class="text-center mt-4">
-                <button
-                    class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Proceed
-                    to Checkout</button>
-            </div>
-        </div> -->
-
-        <div class="card" style="margin-top: 24rem;" >
-        <div class="card-body" id="total_pr">
-            
-        </div>
-        </div>
         </div>
     </div>
 </div>
@@ -165,9 +144,14 @@ document.getElementById("total_pr").innerHTML=`
 
             <!-- Process to Checkout Button -->
             <div class="text-center mt-4">
-                <button class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Proceed
-                    to Checkout</button>
+                <button class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600" id="order">Place Order</button>
             </div>
 `
+$("#itemjson").val(JSON.stringify(cart));
+$("#order").click(function() {
+    document.getElementById("address").click()
+
+});
+
 </script>
 {% endblock %}

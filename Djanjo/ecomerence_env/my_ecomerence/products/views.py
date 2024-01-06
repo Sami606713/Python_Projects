@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import logout
 from django.http import HttpResponse
-from products.models import Products,Contact,Address
+from products.models import Products,Contact,Address,Order
 import math,os
 # Api imports
 from rest_framework import viewsets
@@ -38,7 +38,7 @@ def index(request):
     n=len(product)
     nbr_of_slides=n//4 + math.ceil((n/4)-(n//4))
     # For displaying the image
-
+   
     params={"product":product,"Nbr of slides":nbr_of_slides,"range":range(nbr_of_slides)}
     return render(request,"index.html",params)
 
@@ -117,10 +117,20 @@ def order(request):
         province=request.POST.get("province")
         city=request.POST.get("city")
         area=request.POST.get("area")
-        print(name,phone_nbr,address,email,province,city,area)
+        # print(name,phone_nbr,address,email,province,city,area)
         # print(name)
-
         new_address=Address(name=name,province=province,area=area,city=city,email=email,mobile=phone_nbr,address=address)
         new_address.save()
+
+        # Order item
+        item=request.POST.get("itemjson")
+        # print(item)
+        new_order=Order(item_json=item)
+        new_order.save()
+
+        
     return render(request,"order.html")
 # end order
+
+def admin(requests):
+    return 

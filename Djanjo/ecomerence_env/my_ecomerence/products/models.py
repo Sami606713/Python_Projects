@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 # Product Model
 class Products(models.Model):
     id = models.AutoField(primary_key=True)
-    # _id=models.ObjectIdField(primary_key=True)
     name=models.CharField(max_length=50,default="")
     description=models.CharField(max_length=200,default="")
     category=models.CharField(max_length=20,choices=(
@@ -63,3 +62,11 @@ class Address(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.city}"
+
+
+class Order(models.Model):
+    _id=models.ObjectIdField(primary_key=True)
+    item_json=models.CharField(max_length=5000)
+
+    # def __str__(self):
+    #     return self.id
