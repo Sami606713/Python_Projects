@@ -18,7 +18,7 @@
     </div>
     <!-- Right Side: Description -->
     <div class="flex flex-col justify-center ml-4 md:ml-8">
-        <h2 class="text-lg md:text-xl font-semibold mb-2">{{fetch_product.name}}</h2>
+        <h2 class="text-lg md:text-xl font-semibold mb-2" id="name">{{fetch_product.name}}</h2>
         <!-- Product Rating -->
         <div class="flex items-center mb-2 md:mb-4">
             <span class="text-yellow-500">★</span>
@@ -30,15 +30,15 @@
         </div>
         <!-- Product Price -->
         <div class="flex items-center mb-2 md:mb-4">
-            <span class="text-lg md:text-xl font-semibold mr-2">Rs: {{fetch_product.price}}</span>
+            <span class="text-lg md:text-xl font-semibold mr-2" id="price">Rs: {{fetch_product.price}}</span>
         </div>
         
-        <p class="text-gray-600 mb-4">{{fetch_product.description}}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.</p>
+        <p class="text-gray-600 mb-4" id="desc">{{fetch_product.description}}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.</p>
 
         <hr>
 
         <!-- Buy Now Button -->
-        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Buy Now</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" id="single_item">Buy Now</button>
          <!-- <div class="d-grid gap-2">
           <button class="btn btn-primary cart" id="{{fetch_product.id}}">{{fetch_product.id}} Add to cart</button>
         </div> -->
@@ -64,6 +64,22 @@ $("#img2").click(function () {
 $("#img3").click(function () {
     img3_url=document.getElementById("img3").src
     document.getElementById("main").src=img3_url
+})
+</script>
+<script>
+$("#single_item").click(function() {
+    console.log("button clicked");
+    // cart=JSON.parse(localStorage.getItem("cart"))
+    // console.log(cart);
+    name=document.getElementById("name").innerHTML
+    console.log(name);
+    price=document.getElementById("price").innerHTML
+    console.log(price);
+    img=document.getElementById("main").src
+    console.log(img);
+    desc=document.getElementById("desc").innerHTML
+    console.log(desc);
+    
 })
 </script>
 

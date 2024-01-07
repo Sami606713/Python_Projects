@@ -149,9 +149,12 @@ def order(request):
     return render(request,"order.html")
 # end order
 
-def filter(request):
+
+def product_filter(request):
     if(request.method=="POST"):
         cate=request.POST.get("category")
-        print(cate)
-    return HttpResponse(request,"prod_filter.html")
-    # return HttpResponse("<h1>Filter </h1>")
+        # product=Products.objects.all()
+        product=Products.objects.filter(category=cate)
+        print(product)
+    # return HttpResponse("Filter page")
+    return render(request,"product_filter.html")
