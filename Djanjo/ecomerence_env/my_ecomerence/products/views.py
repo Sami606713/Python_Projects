@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import logout
 from django.http import HttpResponse
-from products.models import Products,Contact,Address,Order
+from products.models import Products,Contact,Address,Order,ProductImage
 import math,os
 # Api imports
 from rest_framework import viewsets
@@ -33,13 +33,24 @@ class ProductViewsets(viewsets.ModelViewSet):
 
 # products end point
 def index(request):
+    # fetch all the product
     product=Products.objects.all()
+
+    # based on product fetch the images
+    prod_img=ProductImage.objects.filter(product__in=product)
+
+    # makea  empty dict
+    img_dic={}
+    for img in prod_img:
+        if(img.product_id not in img_dic):
+            img_dic[img.product_id]=img.image.url
+        
     # Nbr od slides we want to display
     n=len(product)
     nbr_of_slides=n//4 + math.ceil((n/4)-(n//4))
     # For displaying the image
    
-    params={"product":product,"Nbr of slides":nbr_of_slides,"range":range(nbr_of_slides)}
+    params={"product":product,"Nbr of slides":nbr_of_slides,"range":range(nbr_of_slides),"img_dic":img_dic}
     return render(request,"index.html",params)
 
 
@@ -101,7 +112,13 @@ def log_out(request):
 def product_view(request,id):
     # fetch the item
     product=Products.objects.filter(pk=id)
-    return render(request,"product_view.html",{"fetch_product":product[0]})
+    # fetch the item image
+    prod_image=ProductImage.objects.filter(product__in=product)
+    # Fetch  the image url
+    img_url=[image.image.url for image in prod_image]
+    print(img_url)
+    
+    return render(request,"product_view.html",{"fetch_product":product[0],"image_url":img_url})
 
 # Cart 
 def cart(request):
@@ -132,5 +149,9 @@ def order(request):
     return render(request,"order.html")
 # end order
 
-def admin(requests):
-    return 
+def filter(request):
+    if(request.method=="POST"):
+        cate=request.POST.get("category")
+        print(cate)
+    return HttpResponse(request,"prod_filter.html")
+    # return HttpResponse("<h1>Filter </h1>")

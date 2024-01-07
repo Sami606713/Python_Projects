@@ -15,5 +15,6 @@ urlpatterns = [
     path("about",views.about,name="about"),
     path("product_view/<int:id>",views.product_view,name="product_view"),
     path("shoping_cart",views.cart,name="cart"),
-    path("order",views.order,name="order")
+    path("order",views.order,name="order"),
+    path("filter",views.filter,name="filter")
 ]

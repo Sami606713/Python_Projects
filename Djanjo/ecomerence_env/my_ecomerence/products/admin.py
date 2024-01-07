@@ -1,10 +1,16 @@
 from django.contrib import admin
-from products.models import Products,Contact,Address,Order
+from products.models import Products,Contact,Address,Order,ProductImage
 # Register your models here.
 # ADD a search field
-class ProductAdmin(admin.ModelAdmin):
+
+class PictureInline(admin.StackedInline):
+    model =  ProductImage
     search_fields=("name",)
-admin.site.register(Products,ProductAdmin)
+# for Multiple images
+class ProductAdmin(admin.ModelAdmin):
+    inlines = [PictureInline]
+admin.site.register(Products, ProductAdmin)
+
 
 class ContactAdmin(admin.ModelAdmin):
     search_fields=("name",)

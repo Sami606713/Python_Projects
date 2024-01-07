@@ -14,9 +14,16 @@ class Products(models.Model):
     ))
     price=models.DecimalField(max_digits=10,decimal_places=2,default="")
     date=models.DateTimeField(auto_now=True)
-    image=models.ImageField(upload_to="media/images",default="")
+    # image=models.ImageField(upload_to="media/images",default="")
     def __str__(self):
         return f"{self.name} {self.category}"
+    
+class ProductImage(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="media/images", default="")
+
+    def __str__(self):
+        return f"Image for {self.product.name}"
 
 
 # End product 
@@ -68,5 +75,3 @@ class Order(models.Model):
     _id=models.ObjectIdField(primary_key=True)
     item_json=models.CharField(max_length=5000)
 
-    # def __str__(self):
-    #     return self.id
