@@ -116,7 +116,7 @@ def product_view(request,id):
     prod_image=ProductImage.objects.filter(product__in=product)
     # Fetch  the image url
     img_url=[image.image.url for image in prod_image]
-    print(img_url)
+    # print(img_url)
     
     return render(request,"product_view.html",{"fetch_product":product[0],"image_url":img_url})
 
