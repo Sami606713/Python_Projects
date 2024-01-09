@@ -16,5 +16,7 @@ urlpatterns = [
     path("product_view/<int:id>",views.product_view,name="product_view"),
     path("shoping_cart",views.cart,name="cart"),
     path("order",views.order,name="order"),
-    path("filter",views.product_filter,name="filter")
+    path("filter",views.product_filter,name="filter"),
+    path('create_payment_intent',views.create_payment_intent, name='create_payment_intent'),
+    path('checkout',views.checkout, name='checkout'),
 ]

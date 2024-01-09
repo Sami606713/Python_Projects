@@ -7,9 +7,9 @@
         <!-- Left Div - Billing Address Form -->
         <div class="w-1/2 pr-8">
             <h2 class="text-2xl font-semibold mb-4">Billing Address</h2>
-            <form action="/product/order" method="post">
+            <form method="post">
                 {% csrf_token %}
-                <input type="hidden" type="text" id="itemjson" name="itemjson">
+                <input type="hidden" id="itemjson" name="itemjson">
                 <!-- name -->
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700">Name:</label>
@@ -82,7 +82,7 @@
 
         <!-- Right Div - Cart Total Information -->
         <div class="w-1/2 bg-white rounded-md shadow-md p-4 border border-black-500">
-            
+           
             <div class="grid grid-cols-4 mb-3 mt-0 p-2 font-semibold h-20" id="items">
                 <!-- javascript handle -->
             </div>
@@ -153,6 +153,6 @@ $("#order").click(function() {
     // localStorage.clear()
     // window.location.href="/"
 });
-
 </script>
+
 {% endblock %}

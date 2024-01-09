@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import logout
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from products.models import Products,Contact,Address,Order,ProductImage
 import math,os
 # Api imports
@@ -14,6 +16,10 @@ from django.contrib.auth import authenticate,login,logout
 # Email sending
 from django.conf import settings
 from django.core.mail import send_mail
+# Stipe
+import stripe
+
+import json
 
 # Create your views here.
 # Api end points class
@@ -158,3 +164,12 @@ def product_filter(request):
         print(product)
     # return HttpResponse("Filter page")
     return render(request,"product_filter.html")
+
+
+# Stipe payment
+
+
+
+
+
+

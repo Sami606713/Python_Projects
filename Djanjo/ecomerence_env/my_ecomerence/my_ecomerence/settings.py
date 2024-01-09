@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "products",
     "djongo",
     'rest_framework',
-    'storages'
+    "stripe",
    
 ]
 
@@ -163,4 +163,13 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
-# hfwz fmgz qdha hbzt
+
+
+
+
+
+
+# payment integration
+STRIPE_PUBLIC_KEY = 'pk_test_51OWERQDKWg9UJu2sdVDHYcO6HPMbsztuBvX3OZ5xnDBqQpHErSQ9q2TTvNojaxeScfpWfj28n3UV8wrX5Qa45D3000T4b3e4wp'
+STRIPE_SECRET_KEY = 'sk_test_51OWERQDKWg9UJu2sOiZWUfmSUDlRwwOalhCqHg3VE54696oN7efGIMUNVA8AbRBZDYLGqcDuMWWMrOx9kORgbPnu00TyCRtC0csend '
+# End payment
