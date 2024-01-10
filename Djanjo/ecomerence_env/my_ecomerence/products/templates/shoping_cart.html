@@ -71,12 +71,12 @@ if (cart==null) {
 
 for(const item in cart){
     // console.log(cart[i][0]);
-    const name=cart[item][0]
-    const quantity=cart[item][1]
-    const price=cart[item][2]
-    const img=cart[item][3]
+    let name=cart[item][0]
+    let quantity=parseInt(cart[item][1])
+    let price=parseInt(cart[item][2])
+    let img=cart[item][3]
 
-    // console.log(item);
+    // console.log(typeof(name),typeof(quantity),typeof(price),typeof(img));
 
     total+=price*quantity
 
@@ -90,13 +90,15 @@ for(const item in cart){
                     </div>
                 </div>
                     <div>
-                        ${price}  
+                        ${price} 
                     </div>
                     <div>
                         <input type="number" id="pr${item}" class="w-16 border rounded p-1" value="${quantity}">
                     </div>
-                    <div id=total${item}>${quantity*price}</div>
+                    <div id=total${item}>${price*quantity}</div>
                 </div>
+                
+
   ` 
     }
 }
