@@ -8,18 +8,19 @@
 <div class="flex">
   <!-- Left side - Categories Form -->
   <div class="w-1/4 p-4">
-    <form action="{% url 'filter' %}" method="post">
+    <form action="/product/filter" method="post">
       {% csrf_token %}
       <label for="category" class="block text-sm font-medium text-gray-700 mb-2">Categories</label>
       <select id="category" name="category" class="w-full p-2 border rounded">
-        <option value="vehicle">Vehicle</option>
-        <option value="fashion">Fashion</option>
-        <option value="electronics">Electronics</option>
+        <option value="Vehicle">Vehicle</option>
+        <option value="Education">Education</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Electronic">Electronics</option>
       </select>
       <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Submit</button>
     </form>
   </div>
-
+ 
   <!-- Right side - Image Carousel -->
   <div class="w-3/4">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -101,9 +102,8 @@
 {% block js %}  
 <script>
   // jQuery code to handle cart click
-  $('.cart').click(function() {
+  function add_item(idstr){
     //  console.log("clicked");
-    var idstr=this.id.toString();
     if (cart[idstr]==undefined) { 
         quantity=1
         name=document.getElementById("prname"+idstr).innerHTML
@@ -117,6 +117,12 @@
     document.getElementById("cart").innerHTML=Object.keys(cart).length
     // document.getElementById("cart").innerHTML=Object.values(cart).reduce((acc, value) => acc + value, 0);
    
+  }
+
+  
+  $('.cart').click(function() {
+    var idstr=this.id.toString();
+    add_item(idstr)
   });
 </script>
 

@@ -118,52 +118,42 @@ $("#plus").click(function () {
 
 <script>
     function update(id) {
-        var cart // parse the cart variable and get the inner html 
+        var cart =JSON.parse(localStorage.getItem("cart")) || {};// parse the cart variable and get the inner html 
         name=document.getElementById("name").innerHTML
         price=document.getElementById("price").innerHTML
         quantity=parseInt(document.getElementById("qty").innerHTML)
         img=document.getElementById("main").src
   
-        if (JSON.parse(localStorage.getItem("cart")) == null) {  // Corrected the condition
-            cart = {};
-            console.log("Cart ini");
-            
-        } 
-        else {
-            let ItemExist=false
-            for(item in cart){
+        let ItemExist=false
+        for(item in cart){
             // console.log(cart[item][0]);
-            if (cart[item][0]===name) {
-                cart[item][1]=quantity
+        if (cart[item][0]===name) {
+            cart[item][1]=quantity
                 // console.log(cart);
-                alert(`${name} already exists. Current quantity is ${quantity}. Do you want to increase the quantity?`);
+            alert(`${name} already exists. Current quantity is ${quantity}. Do you want to increase the quantity?`);
 
-                ItemExist=true
-                break
-            } 
-        }
+            ItemExist=true
+            break
+        } 
+    }
         // Add the item
-        if(!ItemExist){
-            cart[id]=[name,quantity,price,img]
-            console.log("Done!");
-            // console.log(cart);
-            // json_date=JSON.stringify(cart)
-            // localStorage.setItem(cart,json_date)
-        }
+    if(!ItemExist){
+        // simply add the item
+
+        cart[id]=[name,quantity,price,img]
+        
+        // console.log("Done!");
+    }
         // Save the Changes
-        json_date=JSON.stringify(cart)
-        localStorage.setItem("cart",json_date)
-        }
-    
-        new_cart=JSON.parse(localStorage.getItem("cart"))
-        console.log(new_cart);
+    json_date=JSON.stringify(cart)
+    localStorage.setItem("cart",json_date)
     }
 
     $('.cart').click(function() {
     let idstr=this.id.toString()
-    // console.log(idstr);
+
     update(idstr)
-    // location.reload();
+    location.reload();
     
     });
 </script>

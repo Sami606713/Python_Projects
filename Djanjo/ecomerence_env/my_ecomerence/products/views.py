@@ -160,10 +160,26 @@ def product_filter(request):
     if(request.method=="POST"):
         cate=request.POST.get("category")
         # product=Products.objects.all()
-        product=Products.objects.filter(category=cate)
-        print(product)
+        # filter product
+        filter_product=Products.objects.filter(category=cate)
+
+        # filter product images
+        product_image=ProductImage.objects.filter(product__in=filter_product)
+        # print(product_image)
+        # print(cate,product)
+        img_dic={}
+
+        for image in product_image:
+            if(image.product_id not in img_dic):
+                print(image.image.url)
+                img_dic[image.product_id]=image.image.url
+            # print(image)
+
+        parms={"filter":filter_product,"img_url":img_dic}
     # return HttpResponse("Filter page")
-    return render(request,"product_filter.html")
+    return render(request,"product_filter.html",parms)
+
+  
 
 
 # Stipe payment
@@ -205,4 +221,4 @@ def create_checkout_session(request):
 
 
 def success_view(request):
-    return redirect("/")
+    return render("success.html")
