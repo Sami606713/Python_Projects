@@ -17,6 +17,7 @@ urlpatterns = [
     path("shoping_cart",views.cart,name="cart"),
     path("order",views.order,name="order"),
     path("filter",views.product_filter,name="filter"),
-    path('create_payment_intent',views.create_payment_intent, name='create_payment_intent'),
-    path('checkout',views.checkout, name='checkout'),
+    path('config/', views.stripe_config,name="config"),
+    path('create-checkout-session/', views.create_checkout_session,name="check_out"), # new
+    path('success/', views.success_view, name='success'),
 ]

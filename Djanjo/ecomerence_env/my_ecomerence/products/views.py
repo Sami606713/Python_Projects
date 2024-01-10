@@ -167,9 +167,42 @@ def product_filter(request):
 
 
 # Stipe payment
+@csrf_exempt
+def stripe_config(request):
+    if request.method == 'GET':
+        stripe_config = {'publicKey': settings.STRIPE_PUBLIC_KEY}
+        return JsonResponse(stripe_config, safe=False)
 
 
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'GET':
+        domain_url = 'http://localhost:8000/'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'cancelled/',
+                payment_method_types=['card'],
+                mode='payment',
+                line_items = [
+                {
+                    'price_data': {
+                        'currency': 'PKR',
+                        'product_data': {
+                            'name': 'shoes2',
+                            'description': 'awsome',
+                        },
+                        'unit_amount': 50000,  # Amount in cents (USD)
+                    },
+                    'quantity': 1,
+                }
+            ]
+            )
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
 
 
-
-
+def success_view(request):
+    return redirect("/")

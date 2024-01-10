@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,7 +41,7 @@ INSTALLED_APPS = [
     "djongo",
     'rest_framework',
     "stripe",
-   
+   "payments",
 ]
 
 
@@ -171,5 +170,5 @@ AUTHENTICATION_BACKENDS = [
 
 # payment integration
 STRIPE_PUBLIC_KEY = 'pk_test_51OWERQDKWg9UJu2sdVDHYcO6HPMbsztuBvX3OZ5xnDBqQpHErSQ9q2TTvNojaxeScfpWfj28n3UV8wrX5Qa45D3000T4b3e4wp'
-STRIPE_SECRET_KEY = 'sk_test_51OWERQDKWg9UJu2sOiZWUfmSUDlRwwOalhCqHg3VE54696oN7efGIMUNVA8AbRBZDYLGqcDuMWWMrOx9kORgbPnu00TyCRtC0csend '
+STRIPE_SECRET_KEY = 'sk_test_51OWERQDKWg9UJu2sOiZWUfmSUDlRwwOalhCqHg3VE54696oN7efGIMUNVA8AbRBZDYLGqcDuMWWMrOx9kORgbPnu00TyCRtC0c'
 # End payment
