@@ -7,7 +7,7 @@
         <!-- Left Div - Billing Address Form -->
         <div class="w-1/2 pr-8">
             <h2 class="text-2xl font-semibold mb-4">Billing Address</h2>
-            <form method="post">
+            <form method="post" id="address_form">
                 {% csrf_token %}
                 <input type="hidden" id="itemjson" name="itemjson">
                 <!-- name -->
@@ -149,9 +149,18 @@ document.getElementById("total_pr").innerHTML=`
 `
 $("#itemjson").val(JSON.stringify(cart));
 $("#order").click(function() {
-    document.getElementById("address").click()
-    // localStorage.clear()
-    // window.location.href="/"
+    if (addresscheck()) {
+        // click the submit address btn
+        document.getElementById("address").click()
+        // call the senity check btn
+        senity_check()
+    }else{
+        alert("fill the Address Form")
+    }
+   
+ });
+
+function senity_check() {
     console.log("Sanity check!");
 
     // Get Stripe publishable key
@@ -178,7 +187,21 @@ $("#order").click(function() {
     });
 
     });
-    });
+}
+
+function addresscheck() {
+    const name=document.getElementById("name").value
+    const addr=document.getElementById("addr").value
+    const email=document.getElementById("email").value
+    const nbr=document.getElementById("nbr").value
+
+    console.log(name,addr,email,nbr);
+    if(name && addr && email && nbr){
+        return true
+    }else {
+        return false;
+    }
+}
 </script>
 
 
