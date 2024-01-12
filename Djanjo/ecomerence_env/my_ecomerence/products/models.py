@@ -42,9 +42,10 @@ class Contact(models.Model):
 
 class Address(models.Model):
     _id =models.ObjectIdField(primary_key=True)
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=250)
-    mobile = models.CharField(max_length=20, help_text="+12345678")
+    item_json=models.CharField(max_length=5000,default="")
+    name = models.CharField(max_length=100,default="")
+    address = models.CharField(max_length=250,null=False)
+    mobile = models.CharField(max_length=20, help_text="+12345678",null=False)
     email = models.CharField(max_length=50, unique=True)
     province = models.CharField(max_length=50, choices=(
        ("Azad Kashmir", "Azad Kashmir"),
@@ -71,7 +72,7 @@ class Address(models.Model):
         return f"{self.name} {self.city}"
 
 
-class Order(models.Model):
-    _id=models.ObjectIdField(primary_key=True)
-    item_json=models.CharField(max_length=5000)
+# class Order(models.Model):
+#     _id=models.ObjectIdField(primary_key=True)
+#     item_json=models.CharField(max_length=5000)
 

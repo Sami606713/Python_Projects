@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from products.models import Products,Contact,Address,Order,ProductImage
+from products.models import Products,Contact,Address,ProductImage
 import math,os
 # Api imports
 from rest_framework import viewsets
@@ -140,17 +140,10 @@ def order(request):
         province=request.POST.get("province")
         city=request.POST.get("city")
         area=request.POST.get("area")
-        # print(name,phone_nbr,address,email,province,city,area)
-        # print(name)
-        new_address=Address(name=name,province=province,area=area,city=city,email=email,mobile=phone_nbr,address=address)
-        new_address.save()
-
-        # Order item
+         # Order item
         item=request.POST.get("itemjson")
-        # print(item)
-        new_order=Order(item_json=item)
-        new_order.save()
-
+        new_address=Address(name=name,item_json=item,province=province,area=area,city=city,email=email,mobile=phone_nbr,address=address)
+        new_address.save()
         
     return render(request,"order.html")
 # end order
