@@ -78,7 +78,9 @@
         </div>
         {% if user.is_authenticated %}
         <div class="mt-4">
-          <button class="bg-yellow text-black py-2 hover:text-white px-4 rounded hover:bg-blue-600 border border-black-500 p-4 cart" id="{{item.id}}">Add to cart</button>
+          <button class="bg-yellow text-black py-2 hover:text-white px-4 rounded hover:bg-blue-600 border border-black-500 p-4 cart" id="{{item.id}}">Add to cart
+
+          </button>
         </div>
         {% else %}
         <div class="mt-4">
@@ -123,6 +125,7 @@
   $('.cart').click(function() {
     var idstr=this.id.toString();
     add_item(idstr)
+
   });
 </script>
 

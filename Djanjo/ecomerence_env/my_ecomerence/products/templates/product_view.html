@@ -84,18 +84,9 @@ for (let i=0;i<image.length;i++) {
 <script>
 $("#single_item").click(function() {
     // console.log("button clicked");
-    cart=JSON.parse(localStorage.getItem("cart"))
-    
-    name=document.getElementById("name").innerHTML
-    // console.log(name);
-    price=document.getElementById("price").innerHTML
-    // console.log(price);
-    img=document.getElementById("main").src
-    // console.log(img);
-    desc=document.getElementById("desc").innerHTML
-    // console.log(desc);
+    localStorage.setItem("button_click","true")
    
-
+    
     window.location.href="/product/order"
     
 })
