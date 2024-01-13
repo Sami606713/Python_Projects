@@ -15,6 +15,7 @@ urlpatterns = [
     path("about",views.about,name="about"),
     path("product_view/<int:id>",views.product_view,name="product_view"),
     path("shoping_cart",views.cart,name="cart"),
+    path("address",views.address,name="address"),
     path("order",views.order,name="order"),
     path("filter",views.product_filter,name="filter"),
     path('config/', views.stripe_config,name="config"),

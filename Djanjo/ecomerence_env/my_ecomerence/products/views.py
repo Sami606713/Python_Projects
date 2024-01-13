@@ -130,6 +130,21 @@ def product_view(request,id):
 def cart(request):
     return render(request, "shoping_cart.html")
 
+# address
+def address(request):
+    if(request.method=="POST"):
+        name=request.POST.get("name")
+        phone_nbr=request.POST.get("nbr")
+        address=request.POST.get("addr")
+        email=request.POST.get("email")
+        province=request.POST.get("province")
+        city=request.POST.get("city")
+        area=request.POST.get("area")
+
+        print("         ",name,phone_nbr,area)
+        new_address=Address(name=name,item_json=item,province=province,area=area,city=city,email=email,mobile=phone_nbr,address=address)
+        new_address.save()
+    return render(request,"address.html")
 # order 
 def order(request):
     if(request.method=="POST"):

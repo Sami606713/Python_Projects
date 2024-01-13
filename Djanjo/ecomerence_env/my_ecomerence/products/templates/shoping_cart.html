@@ -47,7 +47,7 @@
             <hr>
             <!-- Process to Checkout Button -->
             <div class="text-center mt-4">
-               <a href="/product/order"> <button class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Proceed to Checkout</button></a>
+               <a href="/product/address"> <button class="bg-red-500 text-white py-2 hover:text-white px-4 rounded hover:bg-blue-600">Proceed to Checkout</button></a>
             </div>
         </div>
     </div>
@@ -93,13 +93,11 @@ for(const item in cart){
                         ${price} 
                     </div>
                     <div>
-                        <input type="number" id="pr${item}" class="w-16 border rounded p-1" value="${quantity}">
+                        <input type="number" id="pr${item}" class="w-16 border rounded p-1" value="${quantity}" min="1" max="5">
                     </div>
                     <div id=total${item}>${price*quantity}</div>
                 </div>
-                
-
-  ` 
+                  ` 
     }
 }
 document.getElementById("total").innerHTML=total
